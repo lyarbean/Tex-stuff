@@ -1,0 +1,51 @@
+\documentclass[10pt]{article}
+\usepackage{xeCJK}
+\newcommand{\mono}{WenQuanYi Zen Hei Mono}
+\usepackage{fontspec}
+\usepackage[10pt]{type1ec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\setromanfont[Mapping=tex-text]{\mono}
+\setmainfont[Mapping=tex-text]{\mono}
+\setsansfont[Mapping=tex-text]{\mono}
+\setmonofont[Mapping=tex-text]{\mono}
+\setCJKmainfont{\mono}
+\setCJKromanfont{\mono}
+\setCJKsansfont{\mono}
+\setCJKmonofont{\mono}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{geometry}
+\geometry{a4paper,hmargin={1cm,1cm},vmargin={1cm,1cm},ratio=1,headheight=1.35cm,footskip=11pt,centering}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings,shadows}
+
+\usepackage[roundedcorners=true]{pgf-umlsd}
+
+\input(pgf-umlsd-ex)
+\begin{document}
+
+\begin{figure}
+    \centering
+    \begin{sequencediagram}
+        \tikzstyle{inststyle}+=[bottom color=orange, top color=white]
+        \newthread{orange}{a}{Alice}
+        \tikzstyle{inststyle}+=[bottom color=LimeGreen, top color=white]
+        \newthread[8]{LimeGreen}{b}{Bob}
+
+        \begin{sdblock}{看看Bob是否在线}{}
+            \begin{altblock}{a}{若是}{b}
+                \begin{call}{a}{聊天}{b}{....}\end{call}
+            \end{altblock}
+            \separateline[color=gray, dashed, thick]{a}{b}
+            \begin{altblock}{a}{否则}{b}
+                \begin{callself}{a}{出去玩}{}\end{callself}
+            \end{altblock}
+        \end{sdblock}
+        \postlevel
+    \end{sequencediagram}
+
+
+\end{figure} 
+
+\end{document}
